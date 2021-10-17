@@ -1,0 +1,110 @@
+<div id="newsEdit">
+  <form #productAddForm="ngForm">
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Chỉnh sửa Bài Viết</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-message></app-message>
+        <div *ngIf="doing" class="m-auto">
+          <h1 class="text-center display-3 mt-5">
+            <i class="fas fa-spinner fa spin"></i> </h1>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Tên bài viết</label>
+              <input
+                type="text" name="title" id="title"
+                [(ngModel)]="news.title"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Mã bài viết</label>
+              <input
+                type="text" name="codeTitle" id="codeTitle"
+                [(ngModel)]="news.codeTitle"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Mô tả</label>
+              <textarea style="height: 200px;"
+              type="text" name="description" id="description"
+              [(ngModel)]="news.description"
+              class="form-control"
+            ></textarea>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Hình Ảnh</label>
+              <input
+                type="text" name="imgs" id="imgs"
+                [(ngModel)]="news.imgs"
+                class="form-control"
+              />
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="bmd-label-floating">Ngày đăng bài</label>
+              <input
+                type="date" name="starDay" id="starDay"
+                [(ngModel)]="news.starDay"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="bmd-label-floating">Ngày gỡ bài đăng</label>
+              <input
+                type="date" name="endDay" id="endDay"
+                [(ngModel)]="news.endDay"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label class="bmd-label-floating">Trạng thái</label>
+            <select
+              name="brand" id="brand"
+              [(ngModel)]="news.state"
+              class="custom-select mb-3"
+            >
+              <option value="cho" selected>Chờ</option>
+              <option value="dang">Đã đăng</option>
+              <option value="kt">Kết thúc</option>
+            </select>
+          </div>
+
+      </div>
+      </div>
+      <app-message></app-message>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary pull-right" (click)="update()">Edit</button>
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+      </div>
+    </ng-template>
+    <button  rel="tooltip" title="Edit Task"
+    class="btn btn-outline-primary " (click)="open(content)">
+    <i class="fas fa-edit"></i></button>
+  </form>
+</div>

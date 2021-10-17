@@ -1,0 +1,86 @@
+<div id="brandAdd">
+  <form #productAddForm="ngForm">
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Thêm Thương Hiệu</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-message></app-message>
+        <div *ngIf="saving" class="m-auto">
+          <h1 class="text-center display-3 mt-5">
+            <i class="fas fa-spinner fa spin"></i> </h1>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Tên thương hiệu</label>
+              <input
+                type="text" name="nameBrand" id="nameBrand"
+                [(ngModel)]="brand.nameBrand"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Mã thương hiệu</label>
+              <input
+                type="text" name="codeBrand" id="codeBrand"
+                [(ngModel)]="brand.codeBrand"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Mô tả</label>
+              <textarea style="height: 200px;"
+              type="text" name="description" id="description"
+              [(ngModel)]="brand.description"
+              class="form-control"
+            ></textarea>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Hình Ảnh</label>
+              <input
+                type="text" name="imgs" id="imgs"
+                [(ngModel)]="brand.imgs"
+                class="form-control"
+              />
+            </div>
+          </div>
+          </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <label class="bmd-label-floating">Trạng thái</label>
+            <select
+              name="state" id="state"
+              [(ngModel)]="brand.state"
+              class="custom-select mb-3"
+            >
+              <option value="dang">Đang kinh doanh</option>
+              <option value="ngung">Ngừng kinh doanh</option>
+            </select>
+          </div>
+
+      </div>
+      </div>
+      <app-message></app-message>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary pull-right" (click)="save()">Thêm</button>
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+      </div>
+    </ng-template>
+    <button class="btn btn-lg btn-outline-primary" (click)="open(content)">THÊM THƯƠNG HIỆU</button>
+  </form>
+</div>
