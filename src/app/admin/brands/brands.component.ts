@@ -1,4 +1,5 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Brand } from './../../models/brand';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { RestApiService } from 'src/app/services/rest-api.service';
@@ -17,6 +18,7 @@ export class BrandsComponent implements OnInit {
 
   deleteId!:string;
   confirmMessage='';
+  key='';
 
   confirmDeleteBrand(confirmDialog: TemplateRef<any>, id: string, nameBrand: string){
     this.confirmMessage = `Bạn thật sự muốn xóa thương hiệu ${nameBrand}` ;
@@ -27,7 +29,12 @@ export class BrandsComponent implements OnInit {
 
     })
   }
-
+  search(keys: string){
+    if (keys!==''){
+      this.key=keys;
+      this.ngOnInit();
+    }
+  }
 
   constructor(private rest:RestApiService,
     private data: DataService,
@@ -36,13 +43,32 @@ export class BrandsComponent implements OnInit {
 
   ngOnInit() {
     this.btnDisabled=true;
+    if(this.key==''){
     this.rest.get(this.url).then(data=>{
         this.brands =( data as {brands: Brand[]}).brands;
         this.btnDisabled=false;
       })
       .catch(error=>{
-        this.data.error(error['message']);
+        this.data.error('Lỗi');
       })
+    }else{
+      this.rest.search(this.url,this.key).then(data=>{
+        this.brands =( data as {brands: Brand[]}).brands;
+        this.btnDisabled=false;
+      })
+      .catch(error=>{
+        this.data.error('lỗi');
+      })
+    }
+  }
+  Search(){
+    if(this.key==''){
+      this.ngOnInit();
+    }else{
+      this.brands = this.brands.filter(res=>{
+        return res.nameBrand.toLocaleLowerCase().match(this.key.toLocaleLowerCase())
+      })
+    }
   }
   delete(){
     if (this.deleteId!==''){

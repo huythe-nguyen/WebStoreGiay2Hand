@@ -6,7 +6,6 @@ import { NewsComponent } from './admin/news/news.component';
 import { EditProductComponent } from './admin/product/edit-product/edit-product.component';
 import { AddProductComponent } from './admin/product/add-product/add-product.component';
 import { ProductAddComponent } from './admin/product/product-add/product-add.component';
-
 import { ProductComponent } from './admin/product/product.component';
 import { HomeComponent } from './admin/home/home.component';
 import { NgModule } from '@angular/core';
@@ -19,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RestApiService } from './services/rest-api.service';
 import { DataService } from './services/data.service';
 import { LoginComponent } from './admin/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,11 +27,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 import { BrandsComponent } from './admin/brands/brands.component';
 import { UserProfileComponent } from './admin/userProfile/userProfile.component';
 import { SalesComponent } from './admin/sales/sales.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { SalesComponent } from './admin/sales/sales.component';
     MessageComponent,
     LoginComponent,
     ProductAddComponent,
-    DialogExampleComponent,
     AddProductComponent,
     EditProductComponent,
     NewsComponent,
@@ -59,6 +58,7 @@ import { SalesComponent } from './admin/sales/sales.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
@@ -68,7 +68,10 @@ import { SalesComponent } from './admin/sales/sales.component';
     MatInputModule,
     MatButtonModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [RestApiService,DataService

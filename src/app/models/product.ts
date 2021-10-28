@@ -10,6 +10,7 @@ export class Product{
   productImg2!:string;
   productImg3!:string;
   status!: string;
+  selling!: string;
   gender!: string;
   colour!: string;
   price!: number;

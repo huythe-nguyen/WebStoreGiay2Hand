@@ -18,6 +18,12 @@ get(link:string){
     return this.http.get(link +'/', {headers: headers}).toPromise();
   return this.http.get(link +'/').toPromise();
 }
+search(link: string,key:string){
+  let headers= this.getHeaders();
+  if(headers instanceof HttpHeaders)
+    return this.http.get(link +'/'+key, {headers: headers}).toPromise();
+  return this.http.get(link +'/'+key ).toPromise();
+}
 getOne(link: string,id:string){
   let headers= this.getHeaders();
   if(headers instanceof HttpHeaders)
